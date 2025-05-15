@@ -2,7 +2,7 @@ import { NextApiRequest } from "next";
 import { Server } from "socket.io";
 
 
-export default function handler(req:NextApiRequest, res:any) { 
+export default async function handler(req:NextApiRequest, res:any) { 
     if(!res?.socket?.server?.io) { //if the result of socket server io does not exists, initiate the socket server 
         console.log("Starting socket io server");
         const io = new Server(res.socket.server); //instantiate the server
@@ -22,9 +22,6 @@ export default function handler(req:NextApiRequest, res:any) {
                 console.log("USER DISCONNECTED");
                 //show through the console when the socket is disconnected
             });
-
-
-
         })
     }
     res.end();
